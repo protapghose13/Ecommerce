@@ -1,0 +1,32 @@
+<div class="searchbar">
+  <!--Sidebar content-->
+  <p>
+    <span>Search :</span>
+    <input ng-model="$ctrl.query" />
+  </p>
+
+  <p>
+    <span>Sort by :</span> 
+    <select ng-model="$ctrl.orderProp">
+      <option value="name">Alphabetical</option>
+      <option value="age">Newest</option>
+    </select>
+  </p>
+</div>
+
+<div class="phones-catalog">
+  <ul class="phones">
+    <li ng-repeat="phone in $ctrl.phones | filter:$ctrl.query | orderBy:$ctrl.orderProp"
+        class="thumbnail phone-list-item">
+        <div class="phone-img">
+          <a href="#!/phones/{{phone.id}}" class="thumb">
+            <img ng-src="{{phone.imageUrl}}" alt="{{phone.name}}" />
+          </a>
+        </div>
+        <div class="phone-desc">
+          <a href="#!/phones/{{phone.id}}">{{phone.name}}</a>
+          <p>{{phone.snippet}}</p>
+        </div>
+    </li>
+  </ul>
+</div>

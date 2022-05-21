@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="phonecatApp">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="app.css" />
+  <link rel="stylesheet" href="app.animations.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- AngularJS Scripts -->
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular-animate/angular-animate.js"></script>
+  <script src="lib/angular-resource/angular-resource.js"></script>
+  <script src="lib/angular-route/angular-route.js"></script>
+  
+  <!-- Restangular scripts and dependency -->
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.3/lodash.js"></script>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/restangular/1.6.1/restangular.js"></script>
+  
+  <!-- Application root scripts -->
+  <script src="app.module.js"></script>
+  <script src="app.config.js"></script>
+  <script src="app.animations.js"></script>
+  
+  <!-- Core scripts -->
+  <script src="core/restapiconfig/restangularbaseurl.module.js"></script>
+  <script src="core/restapiconfig/restangularbaseurl.service.js"></script>
+  <script src="core/core.module.js"></script>
+  <script src="core/checkmark/checkmark.filter.js"></script>
+  <script src="core/phone/phone.module.js"></script>
+  <script src="core/phone/phone.service.js"></script>
+  <script src="core/product/product.module.js"></script>
+  <script src="core/product/product.service.js"></script>
+  <script src="core/category/category.module.js"></script>
+  <script src="core/category/category.service.js"></script>
+  <script src="core/brand/brand.module.js"></script>
+  <script src="core/brand/brand.service.js"></script>
+
+  <!-- Component scripts -->
+  <script src="phone-list/phone-list.module.js"></script>
+  <script src="phone-list/phone-list.component.js"></script>
+  <script src="phone-detail/phone-detail.module.js"></script>
+  <script src="phone-detail/phone-detail.component.js"></script>
+  <script src="phone-list-table/phone-list-table.module.js"></script>
+  <script src="phone-list-table/phone-list-table.component.js"></script>
+  <script src="product-list/product-list.module.js"></script>
+  <script src="product-list/product-list.component.js"></script>
+  <script src="product-detail/product-detail.module.js"></script>
+  <script src="product-detail/product-detail.component.js"></script>
+</head>
+<body>
+  <nav class="main-nav">
+    <ul class="main-menu">
+      <li><a href="#">Home</a></li>
+      <li><a href="#!/phonelisttable">Phones</a></li>
+      <li><a href="#!/products">Products</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div ng-view></div>
+  </div>
+
+  <footer class="main-footer">
+    <p>The copyright &copy; phone-cat app updated version.</p>
+  </footer>
+</body>
+</html>

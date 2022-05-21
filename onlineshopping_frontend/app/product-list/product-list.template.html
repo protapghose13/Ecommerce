@@ -1,0 +1,44 @@
+<div class="searchbar">
+  <!--Sidebar content-->
+  <p>
+    <span>Search :</span>
+    <input ng-model="$ctrl.query" />
+  </p>
+
+  <p>
+    <span>Sort by :</span> 
+    <select ng-model="$ctrl.orderProp">
+      <option value="id">Id</option>
+      <option value="name">Name</option>
+      <option value="description">Description</option>
+      <option value="code">Code</option>
+    </select>
+  </p>
+</div>
+
+<div class="table-data">
+  <a href="#!/products/create" class="btn">Add Product</a>
+  <!--Body content-->
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Age</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Code</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="product in products | filter:$ctrl.query | orderBy:$ctrl.orderProp" ng-click="clicked(product)">
+        <td>{{product.id}}</td>
+        <td>{{product.id}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.description}}</td>
+        <td>{{product.code}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
