@@ -11,37 +11,75 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Entity(name = "Product")
 @Table(name = "product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
+    @Column(
+            name = "code",
+            nullable = false
+    )
     private String code;
 
+    @Column(
+            name = "name",
+            nullable = false
+    )
     private String name;
 
+    @Column(
+            name = "description",
+            columnDefinition = "TEXT"
+    )
     private String description;
 
-    @Column(name = "unit_price")
+    @Column(
+            name = "unit_price",
+            nullable = false
+    )
     private double unitPrice;
 
+    @Column(
+            name = "quantity",
+            nullable = false
+    )
     private int quantity;
 
     @Column(name = "is_active")
-    private boolean active;
+    private boolean active = true;
 
-    @Column(name = "category_id")
-    private int categoryId;
+    @ManyToOne
+    @JoinColumn(
+            name = "brand_id",
+            nullable = false,
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(
+                    name = "product_brand_fk"
+            )
+    )
+    private Brand brand;
 
-    @Column(name = "supplier_id")
-    private int supplierId;
-
-    @Column(name = "brand_id")
-    private int brandId;
+    @ManyToOne
+    @JoinColumn(
+            name = "category_id",
+            referencedColumnName = "id",
+            nullable = false,
+            foreignKey = @ForeignKey(
+                    name = "product_category_fk"
+            )
+    )
+    private Category category;
 
     private int purchases;
 
     private int views;
+
+    @Transient
+    private Long brandId;
+
+    @Transient
+    private Long categoryId;
 }

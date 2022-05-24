@@ -119,8 +119,7 @@ a:hover{
   padding: 15px;
 }
 
-.employee-detail-form .form-field,
-.employee-detail-form .btn-group
+.employee-detail-form .form-field
 {
   padding: 10px 0px;
   margin: 10px 0;
@@ -138,7 +137,14 @@ a:hover{
 .employee-detail-form .form-field input,
 .employee-detail-form .form-field select
 {
-  height: 25px;
+  height: 28px;
+}
+
+.employee-detail-form .btn-group{
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Table */

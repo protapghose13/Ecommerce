@@ -23,19 +23,21 @@
     <thead>
       <tr>
         <th>Id</th>
-        <th>Age</th>
+        <th>Category</th>
         <th>Name</th>
         <th>Description</th>
         <th>Code</th>
+        <th>Brand</th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="product in products | filter:$ctrl.query | orderBy:$ctrl.orderProp" ng-click="clicked(product)">
         <td>{{product.id}}</td>
-        <td>{{product.id}}</td>
+        <td>{{product.category.name}}</td>
         <td>{{product.name}}</td>
         <td>{{product.description}}</td>
         <td>{{product.code}}</td>
+        <td>{{product.brand.name}}</td>
       </tr>
     </tbody>
   </table>

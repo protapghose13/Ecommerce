@@ -9,6 +9,7 @@ angular.
       function ProductListController(productService, $scope) {
         productService.getProducts().then(function (products) {
           $scope.products = products;
+          console.log(products);
         });
         $scope.orderProp = "name";
 

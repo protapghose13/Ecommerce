@@ -9,24 +9,6 @@ function isValid(value){
   return (value !== undefined && value !== null);
 }
 
-function getCategories(scope, id){
-  for(var i=0;i<scope.allCategories.length;i++){
-    if(scope.allCategories[i].id === id){
-      scope.selectedCategory = scope.allCategories[i];
-      break;
-    }
-  } 
-}
-
-function getBrands(scope, id){
-  for(var i=0;i<scope.allBrands.length;i++){
-    if(scope.allBrands[i].id === id){
-      scope.selectedBrand = scope.allBrands[i];
-      break;
-    }
-  } 
-}
-
 // Register `productDetail` component, along with its associated controller and template
 angular.
   module('productDetail').
@@ -48,18 +30,18 @@ angular.
                 $scope.code = product.code;
                 $scope.quantity = product.quantity;
                 $scope.unitPrice = product.unitPrice;
+                $scope.selectedCategory = product.category;
+                $scope.selectedBrand = product.brand;
 
                 if(isValid(product.categoryId)){
                   categoryService.getCategories().then(function (categories) {
                     $scope.allCategories = categories;
-                    getCategories($scope, product.categoryId);
                   });
                 }
       
                 if(isValid(product.brandId)){
                   brandService.getBrands().then(function(brands){
                     $scope.allBrands = brands;
-                    getBrands($scope, product.brandId);
                   });
                 }
 
@@ -118,6 +100,10 @@ angular.
         $scope.deleteProduct = function(){
           productService.deleteProduct($scope.id);
         }
+
+        $scope.comeBack = function comeBack(){
+          window.history.back();
+        };
       }
     ]
   });
