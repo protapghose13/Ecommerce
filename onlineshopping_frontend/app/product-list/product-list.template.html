@@ -17,30 +17,48 @@
 </div>
 
 <div class="table-data">
-  <a href="#!/products/create" class="btn">Add Product</a>
-  <!--Body content-->
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Category</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Code</th>
-        <th>Brand</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="product in products | filter:$ctrl.query | orderBy:$ctrl.orderProp" ng-click="clicked(product)">
-        <td>{{product.id}}</td>
-        <td>{{product.category.name}}</td>
-        <td>{{product.name}}</td>
-        <td>{{product.description}}</td>
-        <td>{{product.code}}</td>
-        <td>{{product.brand.name}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="product-btn">
+    <a href="#!/products/create" class="btn">Add Product</a>
+  </div>
+
+  <div class="table-declaration">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Category</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Code</th>
+          <th>Brand</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="product in products | filter:$ctrl.query | orderBy:$ctrl.orderProp" ng-click="clicked(product)">
+          <td>{{product.id}}</td>
+          <td>{{product.category.name}}</td>
+          <td>{{product.name}}</td>
+          <td>{{product.description}}</td>
+          <td>{{product.code}}</td>
+          <td>{{product.brand.name}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="page-section">
+    <div class="page-size">
+      <select ng-model="selectedPageSize" ng-change="onChangePageSize()" ng-options="obj.value for obj in allPageSizes track by obj.id"></select>
+    </div>
+    <div class="page-number">
+      <ul class="pages">
+        <button class="btn btn-sm table-page-btn fas fa-chevron-left" ng-click="getDataofPage(currentPage - 1)" ng-disabled="currentPage == 0"></button>
+        <button class="btn btn-sm table-page-btn" ng-repeat="page in allpages" ng-click="getDataofPage(page)" ng-class="{'btn-active': page == currentPage}">{{page + 1}}</button>
+        <button class="btn btn-sm table-page-btn fas fa-chevron-right" ng-click="getDataofPage(currentPage + 1)" ng-disabled="currentPage == totalPages - 1"></button>
+      </ul>
+    </div>
+  </div>
+
 </div>
 
 

@@ -16,6 +16,10 @@ angular.
           return Restangular.all('products').getList();
       }
 
+      function getProductsOfCurrentPage(size, page){
+        return Restangular.one('products' + '/' + size + '/' + page).get();
+      }
+
       function getProduct(productId){
         return Restangular.one('products', productId).get();
       }
@@ -60,6 +64,7 @@ angular.
 
       return {
         getProducts : getProducts,
+        getProductsOfCurrentPage : getProductsOfCurrentPage,
         getProduct : getProduct,
         createProduct : createProduct,
         updateProduct : updateProduct,

@@ -8,6 +8,9 @@ import com.ecommerce.onlineshopping.repository.BrandRepository;
 import com.ecommerce.onlineshopping.repository.CategoryRepository;
 import com.ecommerce.onlineshopping.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -91,5 +94,10 @@ public class ProductService {
         );
 
         return productRepository.save(product);
+    }
+
+    public Page<Product> getAllProductsOfPage(int pageSize, int pageNumber) {
+        Pageable page = PageRequest.of(pageNumber, pageSize);
+        return productRepository.findAll(page);
     }
 }

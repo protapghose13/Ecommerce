@@ -177,6 +177,31 @@ a:hover{
   cursor: pointer;
 }
 
+.table-data .pages-section{
+  padding: 10px 0;
+}
+
+.table-data .page-section{
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  padding: 20px 0;
+}
+
+.table-data .page-section .page-size select{
+  width: 50px;
+  height: 25px;
+}
+
+.table-data .page-section .page-number .pages{
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.table-data .pages-section .pages li{
+  margin-right: 5px;
+}
+
 /* Phone catalog */
 .phones-catalog ul li{
   display: flex;
@@ -278,8 +303,21 @@ a:hover{
   color: #fff;
 }
 
+.btn-sm{
+  font-size: 14px;
+}
+
+.table-page-btn{
+  background-color: rgb(219, 190, 169);
+  color: #000;
+}
+
 .btn:hover{
   opacity: 0.9;
+}
+
+.btn-active{
+  background-color: rgb(95, 75, 180);
 }
 
 .row{

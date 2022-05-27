@@ -17,10 +17,13 @@ angular.
         when('/products', {
           template: '<product-list></product-list>'
         }).
-        when('/products/edit/:productId', {
+        when('/products/create', {
           template: '<product-detail></product-detail>'
         }).
-        when('/products/create', {
+        when('/products/:page', {
+          template: '<product-list></product-list>'
+        }).
+        when('/products/edit/:productId', {
           template: '<product-detail></product-detail>'
         }).
         otherwise('/phones');
