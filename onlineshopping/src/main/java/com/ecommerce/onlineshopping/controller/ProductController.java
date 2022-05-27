@@ -29,7 +29,6 @@ public class ProductController {
             @PathVariable int pageSize,
             @PathVariable int pageNumber){
         try {
-            System.out.println("Called");
             Page<Product> pageProducts = productService.getAllProductsOfPage(pageSize, pageNumber);
 
             Map<String, Object> response = new HashMap<>();

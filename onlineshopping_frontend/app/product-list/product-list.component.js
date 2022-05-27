@@ -51,7 +51,6 @@ angular.
           var currentPage = (isValid($routeParams.page) ? $routeParams.page : 0);
           productService.getProductsOfCurrentPage($scope.selectedPageSize.value, currentPage)
                                       .then(function (products) {
-
               $scope.products = products.allProducts;
               $scope.currentPage = products.currentPage;
               $scope.totalPages = products.totalPages;
@@ -60,8 +59,7 @@ angular.
               $scope.allpages = [];
 
               var offset = 3;
-
-              for(var i = Math.max(0, currentPage - offset); i < Math.min(products.totalPages, currentPage + offset + 1); i++){
+              for(var i = Math.max(0, currentPage - offset); i < Math.min(products.totalPages, (+currentPage + +offset + +1)); i++){
                 $scope.allpages.push(i);
               }
           });
