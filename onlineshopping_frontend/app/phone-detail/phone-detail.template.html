@@ -4,7 +4,7 @@
   </a>
 </div>
 
-<div class="phonedetail-imgs">
+<div class="productdetail-imgs">
   <div class="detail-img">
         <img ng-src="{{$ctrl.mainImageUrl}}"/>
   </div>
@@ -14,7 +14,7 @@
   
     <p>{{$ctrl.phone.description}}</p>
     
-    <ul class="phone-thumbs">
+    <ul class="product-thumbs">
       <li ng-repeat="img in $ctrl.phone.images">
         <img ng-src="{{img}}" ng-click="$ctrl.setImage(img)" />
       </li>

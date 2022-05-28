@@ -1,21 +1,34 @@
 'use strict';
 
-const btnType = {
-  Create : "Create",
-  Save : "Save"
-}
-
 function isValid(value){
   return (value !== undefined && value !== null);
 }
+
+angular.
+  module('productDetail').
+  directive('fileModel', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
+            
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+}]);
 
 // Register `productDetail` component, along with its associated controller and template
 angular.
   module('productDetail').
   component('productDetail', {
     templateUrl: 'product-detail/product-detail.template.html',
-    controller: ['$routeParams', 'productService', 'categoryService', 'brandService', '$scope',
-      function ProductDetailController($routeParams, productService, categoryService, brandService, $scope) {
+    controller: ['$routeParams', 'productService', 'categoryService', 'brandService', '$scope', '$http',
+      function ProductDetailController($routeParams, productService, categoryService, brandService, $scope, $http) {
         
         onload();
 
@@ -45,19 +58,34 @@ angular.
                   });
                 }
 
+                loadImages();
+
+                function loadImages(){
+                  var imgUrl = 'http://localhost:8090/api/v1/products/images/all/' + $scope.id;
+                  $http({
+                    method: 'GET',
+                    url: imgUrl
+                  }).then(function successCallback(response) {
+                    console.log(response);
+                    $scope.allProductImages = response.data;
+                    $scope.showCaseImage = $scope.allProductImages[0];
+                    console.log($scope.allProductImages);
+                  }, function errorCallback(response) {
+                    console.log(response);
+                  });
+                }
+
                 $scope.detailHeader = "Product Details";
-                $scope.submitButtonValue = btnType.Save;
               }
               else{
-                $scope.detailHeader = "Add new product";
-                $scope.submitButtonValue = btnType.Create;
-                window.location = 'http://localhost:8000/#!/products';
+                alert("Route parameter is not valid.");
+                window.location.back();
               }
             });
           }
           else{
-            $scope.detailHeader = "Add new product";
-            $scope.submitButtonValue = btnType.Create;
+            alert("Route parameter is not valid.");
+            window.location.back();
           }
 
           categoryService.getCategories().then(function (categories) {
@@ -69,41 +97,55 @@ angular.
           });
         }
 
+        $scope.setShowCaseImage = function(image){
+          $scope.showCaseImage = image;  
+        }
+
         $scope.saveProduct = function(){
-          if(btnType.Create === $scope.submitButtonValue){
-            const product = {
-              name : $scope.name,
-              description : $scope.description,
-              code : $scope.code,
-              quantity : $scope.quantity,
-              unitPrice : $scope.unitPrice,
-              categoryId : $scope.selectedCategory.id,
-              brandId : $scope.selectedBrand.id
-            };
-            productService.createProduct(product);
-          }
-          else{
-            const product = {
-              id : $scope.id,
-              name : $scope.name,
-              description : $scope.description,
-              code : $scope.code,
-              quantity : $scope.quantity,
-              unitPrice : $scope.unitPrice,
-              categoryId : $scope.selectedCategory.id,
-              brandId : $scope.selectedBrand.id
-            };
-            productService.updateProduct(product);
-          }
+          const product = {
+            id : $scope.id,
+            name : $scope.name,
+            description : $scope.description,
+            code : $scope.code,
+            quantity : $scope.quantity,
+            unitPrice : $scope.unitPrice,
+            categoryId : $scope.selectedCategory.id,
+            brandId : $scope.selectedBrand.id
+          };
+          productService.updateProduct(product);
         }
 
         $scope.deleteProduct = function(){
           productService.deleteProduct($scope.id);
         }
 
+        $scope.saveImage = function(){
+          if(isValid($scope.myFile)){
+            var file = $scope.myFile;
+            var uploadUrl = "http://localhost:8090/api/v1/products/image/create/" + $scope.id;
+
+            var fd = new FormData();
+            fd.append('file', file);
+
+            $http.post(uploadUrl, fd, {
+              transformRequest: angular.identity,
+              headers: {'Content-Type': undefined}
+            }).then(
+              function(response){
+                console.log(response);
+                $scope.allProductImages = response.data;
+                $scope.showCaseImage = $scope.allProductImages[0];
+              },
+              function(response){
+                console.log(response);
+              }
+            );
+          }
+        }
+
         $scope.comeBack = function comeBack(){
           window.history.back();
-        };
+        }
       }
     ]
   });

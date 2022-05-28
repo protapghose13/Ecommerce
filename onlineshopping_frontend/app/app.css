@@ -106,12 +106,7 @@ a:hover{
 }
 
 /* Form Design */
-.employee-detail-form{
-  width: 50%;
-  margin: auto;
-}
-
-.employee-detail-form p{
+.product-detail-form p{
   text-align: center;
   font-weight: bold;
   font-size: 20px;
@@ -119,7 +114,7 @@ a:hover{
   padding: 15px;
 }
 
-.employee-detail-form .form-field
+.product-detail-form .form-field
 {
   padding: 10px 0px;
   margin: 10px 0;
@@ -129,18 +124,20 @@ a:hover{
   align-items: left;
 }
 
-.employee-detail-form .form-field label{
+.product-detail-form .form-field label{
   font-weight: bold;
   font-size: 14px;
+  padding-left: 10px;
 }
 
-.employee-detail-form .form-field input,
-.employee-detail-form .form-field select
+.product-detail-form .form-field input,
+.product-detail-form .form-field select
 {
   height: 28px;
+  width: 75%;
 }
 
-.employee-detail-form .btn-group{
+.product-detail-form .btn-group{
   display: flex;
   padding: 20px;
   align-items: center;
@@ -222,32 +219,37 @@ a:hover{
 }
 
 /* Phone specification */
-.phonedetail-imgs{
+.productdetail-imgs{
   display: grid;
-  grid-template-columns: 2fr 5fr;
+  grid-template-columns: 2fr 4fr;
   grid-gap: 30px;
   justify-content: start;
   margin-bottom: 40px; 
 }
 
-.phonedetail-imgs .detail-img img{
+.productdetail-imgs .detail-img img{
   width: 100%;
+  padding-left: 10px;
+  height: 380px;
 }
 
-.phonedetail-imgs .detail-img-desc h1{
+.productdetail-imgs .detail-img-desc h1{
   padding-bottom: 4px;
   border-bottom: 4px solid orange;
   margin-bottom: 10px;
 }
 
-.phonedetail-imgs .detail-img-desc .phone-thumbs{
-  display: flex;
-  column-gap: 10px;
-  justify-content: flex-start;
-  padding: 20px 10px;
+.productdetail-imgs .detail-img-desc .product-thumbs{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  row-gap: 20px;
+  column-gap: 20px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
 }
 
-.phonedetail-imgs .detail-img-desc .phone-thumbs img{
+.productdetail-imgs .detail-img-desc .product-thumbs img{
   width: 100%;
 }
 
@@ -321,13 +323,34 @@ a:hover{
 }
 
 .row{
-  height: 4rem;
   width: 100%;
+  display: flex;
 }
 
-.row #backbtn{
-  margin-top: 20px;
-  margin-left: 20px;
+.row-height{
+  height: 80px;
+}
+
+.row .col-md-4{
+  width: 34%;
+  display: flex;
+  align-items: center;
+}
+
+.row .col-md-8{
+  width: 66%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  column-gap: 10px;
+}
+
+.row .col-md-6{
+  width: 50%;
+}
+
+.row .col-md-9 label{
+  font-weight: bold;
 }
 
 /* Media query */

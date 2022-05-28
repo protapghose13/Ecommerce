@@ -1,8 +1,10 @@
 package com.ecommerce.onlineshopping.service;
 
 import com.ecommerce.onlineshopping.exception.ResourceNotFoundException;
+import com.ecommerce.onlineshopping.helper.FileManager;
 import com.ecommerce.onlineshopping.model.Brand;
 import com.ecommerce.onlineshopping.model.Category;
+import com.ecommerce.onlineshopping.model.FileContainer;
 import com.ecommerce.onlineshopping.model.Product;
 import com.ecommerce.onlineshopping.repository.BrandRepository;
 import com.ecommerce.onlineshopping.repository.CategoryRepository;
@@ -12,7 +14,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +32,9 @@ public class ProductService {
 
     @Autowired
     private BrandRepository brandRepository;
+
+    @Autowired
+    private FileManager fileManager;
 
     private Brand getBrandById(Long brandId){
         return brandRepository.getReferenceById(brandId);
@@ -94,6 +103,22 @@ public class ProductService {
         );
 
         return productRepository.save(product);
+    }
+
+    public void saveImageOfProduct(MultipartFile file, Long productId) throws IOException {
+        fileManager.store(file, productRepository.getReferenceById(productId));
+    }
+
+    public List<String> getAllImagesOfProduct(Long productId){
+        List<FileContainer> files = fileManager.getAllImagesOfProduct(productId);
+
+        List<String> base64Images = new ArrayList<>();
+        for(FileContainer file : files){
+            String t = Base64.getEncoder().encodeToString(file.getContent());
+            base64Images.add(t);
+        }
+
+        return base64Images;
     }
 
     public Page<Product> getAllProductsOfPage(int pageSize, int pageNumber) {

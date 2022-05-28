@@ -7,7 +7,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +47,19 @@ public class ProductController {
     @PostMapping
     public Product createProduct(@RequestBody Product product){
         return productService.createProduct(product);
+    }
+
+    @PostMapping("image/create/{productId}")
+    public ResponseEntity<List<String>> saveImageOfProduct(@PathVariable Long productId, @RequestBody MultipartFile file) throws IOException {
+        if(file != null && productId != null){
+            productService.saveImageOfProduct(file, productId);
+        }
+        return ResponseEntity.ok(productService.getAllImagesOfProduct(productId));
+    }
+
+    @GetMapping("images/all/{productId}")
+    public ResponseEntity<List<String>> getAllImagesOfProduct(@PathVariable Long productId) throws IOException {
+        return ResponseEntity.ok(productService.getAllImagesOfProduct(productId));
     }
 
     @GetMapping("{id}")

@@ -1,0 +1,60 @@
+<div class="product-detail-form">
+  <p>{{detailHeader}}</p>
+  <hr>
+  <input type="text" ng-model="id" hidden>
+  <div class="form-field">
+    <label for="">Product Name :</label>
+    <input type="text" ng-model="name">
+  </div>
+
+  <div class="form-field">
+    <label for="">Description :</label>
+    <input type="text" ng-model="description">
+  </div>
+
+  <div class="form-field">
+    <label for="">Product Code :</label>
+    <input type="text" ng-model="code">
+  </div>
+
+  <div class="form-field">
+    <label for="">Quantity :</label>
+    <input type="number" ng-model="quantity">
+  </div>
+  
+  <div class="form-field">
+    <label for="">Unit Price :</label>
+    <input type="number" ng-model="unitPrice">
+  </div>
+
+  <div class="form-field">
+    <label for="">Category :</label>
+    <select ng-model="selectedCategory" ng-options="obj.name for obj in allCategories track by obj.id"></select>
+  </div>
+
+  <div class="form-field">
+    <label for="">Category Description :</label>
+    <input type="text" value="{{selectedCategory.description}}" disabled>
+  </div>
+
+  <div class="form-field">
+    <label for="">Brand :</label>
+    <select ng-model="selectedBrand" ng-options="obj.name for obj in allBrands track by obj.id"></select>
+  </div>
+
+  <div class="form-field">
+    <label for="">Brand Description :</label>
+    <input type="text" value="{{selectedBrand.description}}" disabled>
+  </div>
+
+  <div class="form-field">
+    <label for="">Upload Image :</label>
+    <input type="file" file-model="myFile"/>
+  </div>
+
+  <div class="btn-group">
+    <input type="submit" class="btn submit-btn" value="Create" ng-click="saveProduct()">
+    <input type="button" class="btn" value="Back" ng-click="comeBack()">
+  </div>
+</div>
+

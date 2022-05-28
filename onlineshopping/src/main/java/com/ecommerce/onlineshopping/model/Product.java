@@ -1,11 +1,15 @@
 package com.ecommerce.onlineshopping.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -72,6 +76,13 @@ public class Product {
             )
     )
     private Category category;
+
+    @JsonIgnore
+    @OneToMany(
+            cascade = {CascadeType.ALL},
+            mappedBy = "product"
+    )
+    private List<FileContainer> files = new ArrayList<>();
 
     private int purchases;
 

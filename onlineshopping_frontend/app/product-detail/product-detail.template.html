@@ -1,56 +1,99 @@
-<div class="employee-detail-form">
-  <p>{{detailHeader}}</p>
-  <hr>
-  <input type="text" ng-model="id" hidden>
-  <div class="form-field">
-    <label for="">Product Name :</label>
-    <input type="text" ng-model="name">
-  </div>
-
-  <div class="form-field">
-    <label for="">Description :</label>
-    <input type="text" ng-model="description">
-  </div>
-
-  <div class="form-field">
-    <label for="">Product Code :</label>
-    <input type="text" ng-model="code">
-  </div>
-
-  <div class="form-field">
-    <label for="">Quantity :</label>
-    <input type="number" ng-model="quantity">
+<div class="row row-height">
+  <div class="col-md-4">
+    <a ng-click="comeBack()">
+      <button id="backbtn" class="btn"><i class="fas fa-chevron-left"></i>  Back</button>
+    </a>    
   </div>
   
-  <div class="form-field">
-    <label for="">Unit Price :</label>
-    <input type="number" ng-model="unitPrice">
+  <div class="col-md-8">
+    <input type="file" class="choose-file" file-model="myFile"/>
+    <input type="button" class="btn submit-btn" value="Add Image" ng-click="saveImage()">
   </div>
+</div>
 
-  <div class="form-field">
-    <label for="">Category :</label>
-    <select ng-model="selectedCategory" ng-options="obj.name for obj in allCategories track by obj.id"></select>
+<div class="productdetail-imgs">
+  <div class="detail-img">
+        <img data-ng-src="data:image/jpeg;base64, {{showCaseImage}}" 
+              alt="image">
   </div>
-
-  <div class="form-field">
-    <label for="">Category Description :</label>
-    <input type="text" value="{{selectedCategory.description}}" disabled>
+  
+  <div class="detail-img-desc">
+    <h1>{{name}}</h1>
+  
+    <p>{{description}}</p>
+    
+    <ul class="product-thumbs">
+      <li ng-repeat="singleImage in allProductImages" >
+        <!-- <img ng-src="{{img}}" ng-click="$ctrl.setImage(img)" /> -->
+        <img data-ng-src="data:image/jpeg;base64, {{singleImage}}" 
+              alt="image" ng-click="setShowCaseImage(singleImage)">
+      </li>
+    </ul>
   </div>
+</div>
 
-  <div class="form-field">
-    <label for="">Brand :</label>
-    <select ng-model="selectedBrand" ng-options="obj.name for obj in allBrands track by obj.id"></select>
+<div class="product-detail-form">
+  <p>Product Detail Configurations</p>
+  <hr>
+  <input type="text" ng-model="id" hidden>
+</div>
+
+<div class="row product-detail-form">
+  
+  <div class="col-md-6">
+    <div class="form-field">
+      <label for="">Product Name :</label>
+      <input type="text" ng-model="name">
+    </div>
+  
+    <div class="form-field">
+      <label for="">Description :</label>
+      <input type="text" ng-model="description">
+    </div>
+  
+    <div class="form-field">
+      <label for="">Product Code :</label>
+      <input type="text" ng-model="code">
+    </div>
+  
+    <div class="form-field">
+      <label for="">Quantity :</label>
+      <input type="number" ng-model="quantity">
+    </div>
+    
+    <div class="form-field">
+      <label for="">Unit Price :</label>
+      <input type="number" ng-model="unitPrice">
+    </div>
   </div>
-
-  <div class="form-field">
-    <label for="">Brand Description :</label>
-    <input type="text" value="{{selectedBrand.description}}" disabled>
+  
+  <div class="col-md-6">
+    <div class="form-field">
+      <label for="">Category :</label>
+      <select ng-model="selectedCategory" ng-options="obj.name for obj in allCategories track by obj.id"></select>
+    </div>
+  
+    <div class="form-field">
+      <label for="">Category Description :</label>
+      <input type="text" value="{{selectedCategory.description}}" disabled>
+    </div>
+  
+    <div class="form-field">
+      <label for="">Brand :</label>
+      <select ng-model="selectedBrand" ng-options="obj.name for obj in allBrands track by obj.id"></select>
+    </div>
+  
+    <div class="form-field">
+      <label for="">Brand Description :</label>
+      <input type="text" value="{{selectedBrand.description}}" disabled>
+    </div>
   </div>
+</div>
 
+<div class="product-detail-form">
   <div class="btn-group">
-    <input type="submit" class="btn submit-btn" value="{{submitButtonValue}}" ng-click="saveProduct()">
+    <input type="submit" class="btn submit-btn" value="Save" ng-click="saveProduct()">
     <input type="button" class="btn" value="Delete" ng-click="deleteProduct()">
     <input type="button" class="btn" value="Back" ng-click="comeBack()">
   </div>
 </div>
-

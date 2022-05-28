@@ -9,5 +9,6 @@ angular.module('phonecatApp', [
   'phoneList',
   'phoneListTable',
   'productList',
-  'productDetail'
+  'productDetail',
+  'productCreate'
 ]);

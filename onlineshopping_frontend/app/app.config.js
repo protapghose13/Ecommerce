@@ -18,7 +18,7 @@ angular.
           template: '<product-list></product-list>'
         }).
         when('/products/create', {
-          template: '<product-detail></product-detail>'
+          template: '<product-create></product-create>'
         }).
         when('/products/:page', {
           template: '<product-list></product-list>'

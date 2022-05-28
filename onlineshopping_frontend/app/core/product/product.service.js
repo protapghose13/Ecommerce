@@ -26,9 +26,7 @@ angular.
 
       function createProduct(product){
         var products = Restangular.all('products');
-        products.post(product);
-        window.location = 'http://localhost:8000/#!/products';
-        reloadPage();
+        return products.post(product);
       }
 
       function updateProduct(product){
@@ -43,8 +41,8 @@ angular.
               prod.categoryId = product.categoryId;
               prod.brandId = product.brandId;
               prod.put();
-              window.location = 'http://localhost:8000/#!/products';
-              reloadPage();
+              // window.location = 'http://localhost:8000/#!/products';
+              // reloadPage();
             }
           });
         }
